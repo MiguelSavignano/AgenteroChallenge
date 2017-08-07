@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :person do
-    name "MyString"
-    age 1
-    oss_projects 1
+    name Faker::Name.name
+    age Faker::Number.between(1, 65)
+    oss_projects Faker::Number.between(0, 20)
   end
 end
