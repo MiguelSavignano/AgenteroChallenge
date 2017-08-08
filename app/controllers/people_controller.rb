@@ -3,8 +3,9 @@ class PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.all
-
+    query = params[:q] || {}
+    order = params[:order] || { name: :asc }
+    @people = Person.where(query).order(order)
     render json: @people
   end
 
