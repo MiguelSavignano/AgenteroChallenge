@@ -1,10 +1,11 @@
 class PeopleController < ApplicationController
+  before_action :repair_nested_params, only: [:index]
   before_action :set_person, only: [:show, :update, :destroy]
 
   # GET /people
   def index
-    query = params[:q] || {}
-    order = params[:order] || { name: :asc }
+    query = params[:q].try(:permit!).try(:to_h) || {}
+    order = params[:order].try(:permit!).try(:to_h) || { name: :asc }
     @people = Person.where(query).order(order)
     render json: @people
   end
@@ -48,5 +49,18 @@ class PeopleController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def person_params
       params.require(:person).permit(:name, :age, :oss_projects)
+    end
+
+    def repair_nested_params(obj = params)
+      obj.each do |key, value|
+        if value.is_a?(ActionController::Parameters) || value.is_a?(Hash)
+          if value.keys.find {|k, _| k =~ /\D/ }
+            repair_nested_params(value)
+          else
+            obj[key] = value.values
+            value.values.each {|h| repair_nested_params(h) }
+          end
+        end
+      end
     end
 end
