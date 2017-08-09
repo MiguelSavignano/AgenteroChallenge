@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_action :authenticate_user
   before_action :repair_nested_params, only: [:index]
   before_action :set_person, only: [:show, :update, :destroy]
 
