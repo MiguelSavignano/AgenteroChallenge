@@ -1,4 +1,4 @@
-var complex_query = { q: { age: 24, "$or" : [{ name: "Robert" }]}, order: { name: "desc" } }
+var complex_query = { q: { age: 29 }, order: { name: "desc" } }
 
 var getPeople = async (complex_query) => {
   var query = $.param(complex_query)
