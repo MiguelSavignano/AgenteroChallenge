@@ -61,14 +61,12 @@ GET /people
 ```javascript
 var complex_query = { q: { age: 24, "$or" : [{ name: "Robert" }]}, order: { name: "desc" } }
 
-var getPeople = async (complex_query) => {
+var getPeople = async (complex_query, token) => {
   var query = $.param(complex_query)
-  const token = await sigIn()
   var response = await fetch(`http://localhost:3000/people?${query}`, {
     headers: {'Authorization': `Bearer ${token}`},
   })
   const json = await response.json()
-  console.log("People")
   console.log(json)
 }
 ```
