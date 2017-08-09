@@ -14,20 +14,6 @@ npm start
 ```
 open http://127.0.0.1:8080
 
-# Avanced filters with url params
-## Or query
-```ruby
-query = { "$or": [{ name: "John" }, { name: "Amanda" }] }
-```
-## And query
-```ruby
-query = { age: 29, oss_projects: 3 }
-```
-## And/Or query
-```ruby
-query = { age: 24, "$or" => [{ name: "Robert" }]}
-```
-
 # SingIn
 POST /user_token
 {"auth": {"email": "user@test.com", "password": "12345678"}}
@@ -51,11 +37,25 @@ const sigIn = async (email = "user@test.com", password = "12345678") => {
 }
 ```
 
+# Avanced filters with url params
+## Or query
+```ruby
+query = { "$or": [{ name: "John" }, { name: "Amanda" }] }
+```
+## And query
+```ruby
+query = { age: 29, oss_projects: 3 }
+```
+## And/Or query
+```ruby
+query = { age: 24, "$or" => [{ name: "Robert" }]}
+```
+
 # GET people
 GET /people
 * params
-| q: hash for avanced filters
-| order: hash for order people, default {name: "asc"}
+q: json for avanced filters
+order: json for order people, default {name: "asc"}
 
 * example
 ```javascript
