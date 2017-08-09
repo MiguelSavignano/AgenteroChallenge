@@ -10,7 +10,7 @@ query = { age: 29, oss_projects: 3 }
 ```
 ## And/Or query
 ```ruby
-query = { age: 24, "$or" => [{name: "Robert" }]}
+query = { age: 24, "$or" => [{ name: "Robert" }]}
 ```
 
 # SingIn
