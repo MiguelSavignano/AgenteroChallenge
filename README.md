@@ -1,4 +1,19 @@
 
+# initialize
+
+```sh
+bundle install
+rake db:create db:seed
+rails server
+```
+* js-client example
+```sh
+cd client
+npm install
+npm start
+```
+open http://127.0.0.1:8080
+
 # Avanced filters with url params
 ## Or query
 ```ruby
